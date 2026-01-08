@@ -140,6 +140,33 @@ const ctaSection: Section = {
     },
   ],
 };
+
+const midFeatureRows = [
+  {
+    title: '高质量图纸输出',
+    description: '这里放置功能说明的占位文字，可替换成真实描述。',
+    bullets: ['支持 PDF/PNG 导出', '符号标记清晰', '适合打印使用'],
+    imageSrc: '/imgs/features/1.png',
+    imageAlt: 'feature-1',
+    reverse: false,
+  },
+  {
+    title: '颜色统计与清单',
+    description: '这里放置功能说明的占位文字，可替换成真实描述。',
+    bullets: ['自动统计针数', '颜色占比直观', '便于准备材料'],
+    imageSrc: '/imgs/features/2.png',
+    imageAlt: 'feature-2',
+    reverse: true,
+  },
+  {
+    title: '移动端也能使用',
+    description: '这里放置功能说明的占位文字，可替换成真实描述。',
+    bullets: ['响应式布局', '操作流畅', '随时生成图纸'],
+    imageSrc: '/imgs/features/3.png',
+    imageAlt: 'feature-3',
+    reverse: false,
+  },
+];
 class ImageCompressor {
   private maxDimension: number;
   private quality: number;
@@ -1003,21 +1030,53 @@ export function CrossstitchTool() {
         </div>
       </section>
 
+      <section id="feature-rows" className="py-16 md:py-24">
+        <div className="container space-y-12">
+          {midFeatureRows.map((item) => (
+            <div
+              key={item.title}
+              className="grid items-center gap-8 lg:grid-cols-2"
+            >
+              <div
+                className={`order-1 rounded-3xl border border-white/70 bg-white/90 p-4 shadow-lg ${
+                  item.reverse ? 'lg:order-2' : 'lg:order-1'
+                }`}
+              >
+                <img
+                  src={item.imageSrc}
+                  alt={item.imageAlt}
+                  className="h-full w-full rounded-2xl object-cover"
+                />
+              </div>
+              <div
+                className={`order-2 space-y-4 ${
+                  item.reverse ? 'lg:order-1' : 'lg:order-2'
+                }`}
+              >
+                <h2 className="text-2xl font-semibold text-[#2b1b0f]">
+                  {item.title}
+                </h2>
+                <p className="text-sm text-[#5c4637]">
+                  {item.description}
+                </p>
+                <div className="space-y-2 text-sm text-[#5c4637]">
+                  {item.bullets.map((bullet) => (
+                    <div key={bullet} className="flex items-center gap-2">
+                      <span className="h-2 w-2 rounded-full bg-[#2b1b0f]" />
+                      <span>{bullet}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
       <Features section={featuresSection} />
       <Testimonials section={testimonialsSection} />
       <Faq section={faqSection} />
       <Cta section={ctaSection} />
-
-      <section id="seo-content" className="py-16 md:py-24">
-        <div className="container">
-          <div className="rounded-3xl border border-border/70 bg-muted/40 p-8 md:p-10">
-            <h2 className="text-2xl font-semibold text-foreground">SEO 内容区域</h2>
-            <p className="mt-3 text-sm text-muted-foreground">
-              此处放置 SEO 文案内容（结构占位）。
-            </p>
-          </div>
-        </div>
-      </section>
     </main>
   );
 }
