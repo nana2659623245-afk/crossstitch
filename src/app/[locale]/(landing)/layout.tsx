@@ -29,7 +29,23 @@ export default async function LandingLayout({
     show_locale: false,
     show_sign: false,
   };
-  const footer: FooterType = t.raw('footer');
+  const rawFooter: FooterType = t.raw('footer');
+  const footer: FooterType = {
+    ...rawFooter,
+    brand: rawFooter.brand
+      ? { ...rawFooter.brand, description: '' }
+      : rawFooter.brand,
+    nav: rawFooter.nav
+      ? {
+          ...rawFooter.nav,
+          items: rawFooter.nav.items?.map((item) => ({
+            ...item,
+            children: [],
+          })),
+        }
+      : rawFooter.nav,
+    show_built_with: false,
+  };
 
   return (
     <Layout header={header} footer={footer}>
