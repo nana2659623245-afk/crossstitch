@@ -732,22 +732,7 @@ export function CrossstitchTool() {
         <div className="absolute -right-12 -top-20 h-60 w-60 rounded-full bg-[#ffd7a1]/60 blur-3xl" />
         <div className="absolute -bottom-24 left-12 h-64 w-64 rounded-full bg-[#b7e3ff]/60 blur-3xl" />
         <div className="container pb-16 pt-24">
-          <div className="flex flex-wrap items-center gap-3 rounded-2xl border border-white/70 bg-white/60 px-4 py-3 shadow-sm backdrop-blur">
-            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#2b1b0f] text-white shadow-sm">
-              <svg viewBox="0 0 24 24" className="h-6 w-6" fill="currentColor">
-                <path d="M8 5v14l11-7z" />
-              </svg>
-            </div>
-            <div>
-              <h1 className="text-xl font-semibold text-[#2b1b0f] md:text-2xl">
-                十字绣图纸生成器
-              </h1>
-              <p className="text-sm text-[#5c4637]">
-                将任何图片转换为精美的十字绣图纸
-              </p>
-            </div>
-          </div>
-
+          <h1 className="sr-only">十字绣图纸生成器</h1>
           <div className="mt-8 grid gap-6 lg:grid-cols-[1fr_1.7fr]">
             <div className="space-y-6">
               <div className="rounded-2xl border border-white/70 bg-white/90 p-6 shadow-lg">
@@ -1042,11 +1027,13 @@ export function CrossstitchTool() {
                   item.reverse ? 'lg:order-2' : 'lg:order-1'
                 }`}
               >
-                <img
-                  src={item.imageSrc}
-                  alt={item.imageAlt}
-                  className="h-full w-full rounded-2xl object-cover"
-                />
+                <div className="aspect-[3/2] overflow-hidden rounded-2xl">
+                  <img
+                    src={item.imageSrc}
+                    alt={item.imageAlt}
+                    className="h-full w-full object-cover"
+                  />
+                </div>
               </div>
               <div
                 className={`order-2 space-y-4 ${

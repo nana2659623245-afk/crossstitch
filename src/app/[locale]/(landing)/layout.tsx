@@ -20,7 +20,15 @@ export default async function LandingLayout({
   const Layout = await getThemeLayout('landing');
 
   // header and footer to display
-  const header: HeaderType = t.raw('header');
+  const rawHeader: HeaderType = t.raw('header');
+  const header: HeaderType = {
+    ...rawHeader,
+    nav: rawHeader.nav ? { ...rawHeader.nav, items: [] } : { items: [] },
+    buttons: [],
+    show_theme: false,
+    show_locale: false,
+    show_sign: false,
+  };
   const footer: FooterType = t.raw('footer');
 
   return (

@@ -50,6 +50,7 @@ export function Header({ header }: { header: HeaderType }) {
   const scrollRafRef = useRef<number | null>(null);
   const isLarge = useMedia('(min-width: 64rem)');
   const pathname = usePathname();
+  const hasNavItems = Boolean(header.nav?.items && header.nav.items.length > 0);
 
   useEffect(() => {
     // Listen to scroll event to enable header styles on scroll
@@ -266,22 +267,24 @@ export function Header({ header }: { header: HeaderType }) {
                 {header.brand && <BrandLogo brand={header.brand} />}
 
                 {/* Desktop Navigation Menu */}
-                {isLarge && <NavMenu />}
+                {isLarge && hasNavItems && <NavMenu />}
                 {/* Hamburger menu button for mobile navigation */}
-                <button
-                  onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                  aria-label={
-                    isMobileMenuOpen == true ? 'Close Menu' : 'Open Menu'
-                  }
-                  className="relative z-20 -m-2.5 -mr-3 block cursor-pointer p-2.5 lg:hidden"
-                >
-                  <Menu className="m-auto size-5 duration-200 in-data-[state=active]:scale-0 in-data-[state=active]:rotate-180 in-data-[state=active]:opacity-0" />
-                  <X className="absolute inset-0 m-auto size-5 scale-0 -rotate-180 opacity-0 duration-200 in-data-[state=active]:scale-100 in-data-[state=active]:rotate-0 in-data-[state=active]:opacity-100" />
-                </button>
+                {hasNavItems && (
+                  <button
+                    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                    aria-label={
+                      isMobileMenuOpen == true ? 'Close Menu' : 'Open Menu'
+                    }
+                    className="relative z-20 -m-2.5 -mr-3 block cursor-pointer p-2.5 lg:hidden"
+                  >
+                    <Menu className="m-auto size-5 duration-200 in-data-[state=active]:scale-0 in-data-[state=active]:rotate-180 in-data-[state=active]:opacity-0" />
+                    <X className="absolute inset-0 m-auto size-5 scale-0 -rotate-180 opacity-0 duration-200 in-data-[state=active]:scale-100 in-data-[state=active]:rotate-0 in-data-[state=active]:opacity-100" />
+                  </button>
+                )}
               </div>
 
               {/* Show mobile menu if needed */}
-              {!isLarge && isMobileMenuOpen && (
+              {!isLarge && isMobileMenuOpen && hasNavItems && (
                 <MobileMenu closeMenu={() => setIsMobileMenuOpen(false)} />
               )}
 
