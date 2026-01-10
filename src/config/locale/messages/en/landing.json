@@ -4,7 +4,7 @@
     "brand": {
       "title": "Cross Stitch Maker",
       "logo": {
-        "src": "/logo.png",
+        "src": "/Crossstitch-logo.png",
         "alt": "Cross Stitch Maker",
         "width": 100,
         "height": 100
@@ -116,7 +116,7 @@
       "title": "Cross Stitch Maker",
       "description": "ShipAny is a NextJS boilerplate for building AI SaaS startups. Ship Fast with a variety of templates and components.",
       "logo": {
-        "src": "/logo.png",
+        "src": "/Crossstitch-logo.png",
         "alt": "Cross Stitch Maker",
         "width": 1024,
         "height": 1024
